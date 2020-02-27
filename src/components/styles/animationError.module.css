@@ -3,12 +3,12 @@
 }
 .enterActive {
   transform: translateX(0);
-  transition: transform 300ms ease-in-out;
+  transition: transform 250ms ease-in-out;
 }
 .exit {
   transform: translateX(0);
 }
 .exitActive {
   transform: translateX(200%);
-  transition: transform 300ms ease-in-out;
+  transition: transform 250ms ease-in-out;
 }

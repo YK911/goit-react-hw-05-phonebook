@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addContact } from '../../redux/actionCreators';
-import shortId from 'shortid';
-import styles from '../styles/components.module.css';
-import { CSSTransition } from 'react-transition-group';
-import animations from '../styles/animationPhonebook.module.css';
-import animationError from '../styles/animationError.module.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addContact } from "../../redux/actionCreators";
+import shortId from "shortid";
+import styles from "../styles/components.module.css";
+import { CSSTransition } from "react-transition-group";
+import animations from "../styles/animationPhonebook.module.css";
+import animationError from "../styles/animationError.module.css";
 
 const INITIAL_STATE = {
-  name: '',
-  number: '',
-  isTitleVisible: false,
+  name: "",
+  number: "",
+  isVisible: false,
   isError: false
 };
 
@@ -21,7 +21,7 @@ class ContactForm extends Component {
 
   componentDidMount() {
     this.setState({
-      isTitleVisible: true
+      isVisible: true
     });
   }
 
@@ -34,7 +34,7 @@ class ContactForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    if (name === '') {
+    if (name === "") {
       return;
     }
     if (
@@ -60,22 +60,18 @@ class ContactForm extends Component {
   };
 
   render() {
-    const { name, number, isTitleVisible, isError } = this.state;
+    const { name, number, isVisible, isError } = this.state;
     return (
       <>
-        <CSSTransition
-          in={isTitleVisible}
-          timeout={1000}
-          classNames={animations}
-        >
+        <CSSTransition in={isVisible} timeout={1000} classNames={animations}>
           <h2>Phonebook</h2>
         </CSSTransition>
         <form onSubmit={this.handleSubmit} className={styles.contactForm}>
           <label className={styles.inputLabel}>
             Name:
             <input
-              type='text'
-              name='name'
+              type="text"
+              name="name"
               value={name}
               onChange={this.handleChange}
             />
@@ -83,13 +79,13 @@ class ContactForm extends Component {
           <label className={styles.inputLabel}>
             Number:
             <input
-              type='text'
-              name='number'
+              type="text"
+              name="number"
               value={number}
               onChange={this.handleChange}
             />
           </label>
-          <button type='submit'>Add Contact</button>
+          <button type="submit">Add Contact</button>
         </form>
 
         <CSSTransition
@@ -100,7 +96,7 @@ class ContactForm extends Component {
         >
           <div
             className={styles.error}
-          >{`Contact ~${name}~ already exists!`}</div>
+          >{`Contact ${name} already exists!`}</div>
         </CSSTransition>
       </>
     );

@@ -10,5 +10,5 @@
 }
 .exitActive {
   transform: translateX(-200%);
-  transition: transform 700ms;
+  transition: transform 500ms;
 }
